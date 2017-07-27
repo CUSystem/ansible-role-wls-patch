@@ -35,7 +35,7 @@
 
 - name: Template over patching script
   template: 
-    src: opatch_lsinventory.sh.j2
+    src: opatch_apply.sh.j2
     dest: "{{ patch_file_dest }}/opatch_apply.sh"
     owner: "{{ oracle_user }}"
     group: "{{ oracle_group }}"
