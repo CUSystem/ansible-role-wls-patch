@@ -16,3 +16,5 @@ patch_version: 12212
 patch_file_dest: "{{ mw_home }}/PATCH_TOP"
 
 opatch_home: "{{ mw_home }}/OPatch"
+download_patches: []
+new_patch_dest: no

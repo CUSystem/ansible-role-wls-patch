@@ -4,6 +4,12 @@
   yum:
     name: unzip
     state: latest
+
+- name: clear the patch top folder
+  file:
+    path: "{{ patch_file_dest }}"
+    state: absent
+  when: new_patch_dest
  
 - name: Create useful directories
   file:

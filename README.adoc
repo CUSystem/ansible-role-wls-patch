@@ -33,6 +33,7 @@ A 12.2.1.2 example shown but I'll update with older patching as I can.
       become: yes
       become_user: oracle
       vars:
+        new_patch_dest: no
         oracle_base: /u01/app/oracle
         scripts_home: "{{ oracle_base }}/scripts"
         patch_version: 12212
