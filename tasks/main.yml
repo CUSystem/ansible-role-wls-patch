@@ -1,0 +1,44 @@
+# Tasks for wls-patch role.
+
+- name: Might need unzip
+  yum:
+    name: unzip
+    state: latest
+ 
+- name: Create useful directories
+  file:
+    path: "{{ item }}" 
+    state: directory
+    owner: "{{ oracle_user }}"
+    group: "{{ oracle_group }}"
+    mode: 0700
+  with_items:
+    - "{{ patch_file_dest }}"
+    - "{{ scripts_home }}"
+
+- name: copy patch files to dest directory
+  unarchive:
+    src: "{{ item }}"
+    dest: "{{ patch_file_dest }}"
+    owner: "{{ oracle_user }}"
+    group: "{{ oracle_group }}"
+    remote_src: yes
+  with_items:
+    - "{{ download_patches }}"   
+  when: download_patches.0 is defined
+
+- name: Template over patching script
+  template: 
+    src: opatch_lsinventory.sh.j2
+    dest: "{{ patch_file_dest }}/opatch_apply.sh"
+    owner: "{{ oracle_user }}"
+    group: "{{ oracle_group }}"
+    mode: 0700
+
+- name: Template over patching script
+  template: 
+    src: opatch_lsinventory.sh.j2
+    dest: "{{ patch_file_dest }}/opatch_lsinventory.sh"
+    owner: "{{ oracle_user }}"
+    group: "{{ oracle_group }}"
+    mode: 0700

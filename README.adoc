@@ -1,0 +1,52 @@
+# Ansible Role: wls-patch
+
+Copy over and prepare WLS system for patching.
+Someone specific since patching names and files can vary so widely. 
+Designed primarly for an organization with a binary artifact repository, but should also work for folks who copy files over using Ansible.
+
+## Requirements
+
+Linux, RHEL or CentOS 7 preferred but 6 supported.
+
+## Dependencies
+
+None.
+
+== Example requirements.yml
+
+----
+  - src: https://github.com/staylorx/ansible-role-wls-patch
+    version: master
+    name: staylorx.wls-patch
+----
+
+Install with
+
+  sudo ansible-galaxy install -r requirements.yml
+
+## Example Playbook
+
+A 12.2.1.2 example shown but I'll update with older patching as I can.
+
+----
+    - hosts: servers
+      become: yes
+      become_user: oracle
+      vars:
+        oracle_base: /u01/app/oracle
+        scripts_home: "{{ oracle_base }}/scripts"
+        patch_version: 12212
+        patch_file_dest: "{{ oracle_base }}/middleware/Oracle_Home/PATCH_TOP
+        opatch_home: "{{ mw_home }}/OPatch"
+        # if download_patches is empty I will assume you got the files over yourself and not download
+        download_patches:
+          - http://artifactory.your_domain/artifactory/ext-archive-local/com/oracle/patches/psu170718/p25871788_122120_Generic.zip
+
+      roles:
+        - role: staylorx.wls-patch
+----
+
+
+## License
+
+MIT

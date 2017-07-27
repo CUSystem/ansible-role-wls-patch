@@ -1,0 +1,18 @@
+---
+
+oracle_user: oracle
+oracle_group: oinstall
+java_home: /usr/java/default
+weblogic_user: weblogic
+oracle_base: /opt/oracle
+domain_base: /home/oracle
+mw_home: "{{ oracle_base }}/middleware"
+oracle_home: "{{ mw_home }}/oracle_common"
+wl_home: "{{ mw_home }}/wlserver"
+mw_installer_folder: "{{ oracle_base }}/installer"
+scripts_home: "{{ oracle_base }}/scripts"
+
+patch_version: 12212
+patch_file_dest: "{{ mw_home }}/PATCH_TOP"
+
+opatch_home: "{{ mw_home }}/OPatch"
