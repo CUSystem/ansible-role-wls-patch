@@ -30,8 +30,8 @@
     group: "{{ oracle_group }}"
     remote_src: yes
   with_items:
-    - "{{ download_patches }}"   
-  when: download_patches.0 is defined
+    - "{{ download_patches[weblogic_domain_version].weblogic_download_url }}"   
+  when: download_patches[weblogic_domain_version].weblogic_version is defined
 
 - name: Template over patching script
   template: 
