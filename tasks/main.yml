@@ -1,9 +1,9 @@
 # Tasks for wls-patch role.
 
-- name: Might need unzip
-  yum:
-    name: unzip
-    state: latest
+# - name: Might need unzip
+#   yum:
+#     name: unzip
+#     state: latest
 
 - name: clear the patch top folder
   file:
